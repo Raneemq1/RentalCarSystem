@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@model IEnumerable<RentalCarSystem.Models.Car>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    <div class="row">
+        <input type="text" placeholder="Search for a car" name="input" class="m-4" />
+        @foreach (var car in Model)
+        {
+            @if (!car.Name.Contains("") &&car.Price != Double.Parse("200"))
+            {
+             
+                continue;
+            }
+            <div class="col-md-4">
+                <div class="card" style="width: 20rem; height:24rem">
+                    <img src="@car.ImagePath" style="height: 200px; overflow: hidden;" class="card-img-top" alt="@car.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@car.Name</h5>
+                            <p class="card-text"><strong>Price:</strong> $@car.Price</p>
+                            <p class="card-text"><strong>Color:</strong> @car.Color</p>
+                            <a  class="btn btn-primary">Rent</a>
+                       
+                    </div>
+                </div>
+            </div>
+            
+        }
+    </div>
+    </div>
